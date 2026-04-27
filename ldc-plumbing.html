@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LDC Plumbing & Heating | Expert Local Plumbers</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1a3a5c;
+    --accent: #f4a020;
+    --light: #f5f0e8;
+    --white: #ffffff;
+    --grey: #6b7280;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--navy); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--white); letter-spacing: 2px; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--accent); color: var(--navy) !important; padding: 0.5rem 1.2rem; border-radius: 4px; font-weight: 700 !important; }
+
+  .hero {
+    min-height: 100vh; background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 7rem 2.5rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(244,160,32,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(244,160,32,0.15); border: 1px solid rgba(244,160,32,0.4);
+    color: var(--accent); padding: 0.4rem 1rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 6vw, 5.5rem);
+    color: var(--white); line-height: 1; letter-spacing: 2px; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.7;
+    max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
+  .btn-primary {
+    background: var(--accent); color: var(--navy); padding: 0.9rem 2rem;
+    border-radius: 6px; font-weight: 700; font-size: 1rem; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(244,160,32,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(244,160,32,0.5); }
+  .btn-secondary {
+    border: 2px solid rgba(255,255,255,0.3); color: var(--white); padding: 0.9rem 2rem;
+    border-radius: 6px; font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); background: rgba(244,160,32,0.1); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+    margin-top: 3rem; animation: fadeUp 0.6s ease 0.4s both;
+    padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); letter-spacing: 1px; }
+  .stat-label { color: rgba(255,255,255,0.5); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+  .hero-right { display: flex; justify-content: center; align-items: center; animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 2.5rem; max-width: 340px; width: 100%;
+  }
+  .stars { display: flex; gap: 4px; margin-bottom: 1rem; }
+  .review-text { color: rgba(255,255,255,0.8); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 0.8rem; }
+  .reviewer-avatar {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: var(--navy); font-size: 1rem;
+  }
+  .reviewer-name { color: var(--white); font-weight: 600; font-size: 0.9rem; }
+  .reviewer-sub { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+  .google-badge {
+    margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.5); font-size: 0.85rem;
+  }
+
+  .emergency {
+    background: var(--accent); padding: 1.2rem 2.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .emergency p { font-weight: 700; color: var(--navy); font-size: 1.05rem; }
+  .emergency a {
+    background: var(--navy); color: var(--white); padding: 0.6rem 1.5rem;
+    border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 1.05rem; transition: opacity 0.2s;
+  }
+  .emergency a:hover { opacity: 0.85; }
+
+  .services { padding: 6rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+  .section-tag { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--navy); letter-spacing: 1px; margin-bottom: 1rem; }
+  .section-sub { color: var(--grey); font-size: 1rem; max-width: 500px; line-height: 1.6; margin-bottom: 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .service-card {
+    background: var(--white); border-radius: 12px; padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--navy); }
+  .service-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
+
+  .why { background: var(--navy); padding: 6rem 2.5rem; }
+  .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .why .section-title { color: var(--white); }
+  .why .section-sub { color: rgba(255,255,255,0.5); }
+  .why-points { display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-point { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-icon {
+    width: 46px; height: 46px; background: rgba(244,160,32,0.15);
+    border: 1px solid rgba(244,160,32,0.3); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .why-point h4 { color: var(--white); font-weight: 600; margin-bottom: 0.3rem; }
+  .why-point p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.5; }
+
+  .reviews { padding: 6rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .review-card { background: var(--white); border-radius: 12px; padding: 1.8rem; border: 1px solid rgba(0,0,0,0.06); }
+  .review-stars { display: flex; gap: 3px; color: var(--accent); margin-bottom: 1rem; font-size: 1rem; }
+  .review-card p { color: var(--grey); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.2rem; }
+  .review-name { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+
+  .contact { background: var(--navy); padding: 6rem 2.5rem; }
+  .contact-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .contact .section-title { color: var(--white); }
+  .contact .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; }
+  .contact-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .contact-option {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 2rem; text-align: center; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-option:hover { background: rgba(244,160,32,0.1); border-color: rgba(244,160,32,0.4); }
+  .contact-option-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .contact-option h4 { color: var(--white); font-weight: 700; margin-bottom: 0.3rem; }
+  .contact-option p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+
+  footer {
+    background: #080f18; padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--white); letter-spacing: 2px; }
+  .footer-logo span { color: var(--accent); }
+  footer p { color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-right { display: none; }
+    .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LDC <span>Plumbing</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Call Now</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">⭐ 5.0 Rating · 174 Google Reviews</div>
+    <h1>Your Local <span>Plumbing &</span> Heating Experts</h1>
+    <p>From emergency call-outs to full bathroom installations — LDC Plumbing & Heating delivers fast, reliable, and affordable plumbing services you can trust.</p>
+    <div class="hero-buttons">
+      <a href="tel:07739567934" class="btn-primary">📞 Call 07739 567934</a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">174</div><div class="stat-label">5-Star Reviews</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Emergency Cover</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Absolutely brilliant service. Came out same day, fixed our burst pipe quickly and left everything spotless. Highly recommend LDC!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SJ</div>
+        <div>
+          <div class="reviewer-name">Sarah J.</div>
+          <div class="reviewer-sub">Google Review</div>
+        </div>
+      </div>
+      <div class="google-badge">🔵 Verified on Google · 5.0 from 174 reviews</div>
+    </div>
+  </div>
+</section>
+
+<div class="emergency">
+  <p>🚨 Plumbing emergency? We're available 24 hours a day, 7 days a week.</p>
+  <a href="tel:07739567934">Call Now: 07739 567934</a>
+</div>
+
+<section class="services" id="services">
+  <div class="section-tag">What We Do</div>
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-sub">From small repairs to full installations, we handle all your plumbing and heating needs.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🛁</div><h3>Full Bathroom Installations</h3><p>Complete bathroom and wet room installs, including tiling, fixtures, and fitting. We supply everything you need.</p></div>
+    <div class="service-card"><div class="service-icon">🔧</div><h3>Plumbing Repairs</h3><p>Leak detection and repair, pipe repairs, tap replacement, and all general plumbing work, big or small.</p></div>
+    <div class="service-card"><div class="service-icon">🔥</div><h3>Central Heating</h3><p>Central heating installation, radiator fitting, water tank installation and repair to keep your home warm.</p></div>
+    <div class="service-card"><div class="service-icon">🚿</div><h3>Shower Installation</h3><p>Shower and bath installation, replacement, and repair. We also fit enclosures, screens, and wet rooms.</p></div>
+    <div class="service-card"><div class="service-icon">🚨</div><h3>24hr Emergency Plumbing</h3><p>Burst pipes, leaks, and blockages don't wait — and neither do we. Available around the clock for emergencies.</p></div>
+    <div class="service-card"><div class="service-icon">🪵</div><h3>Flooring & Tiling</h3><p>Floor and wall tiling, LVT flooring, and floor fitting to complete your bathroom or renovation project.</p></div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Trusted by Hundreds of Local Customers</h2>
+      <p class="section-sub">We're not a big call centre — we're your local plumbers who take pride in every job.</p>
+    </div>
+    <div class="why-points">
+      <div class="why-point"><div class="why-icon">⭐</div><div><h4>5.0 Star Rating</h4><p>174 genuine Google reviews — all five stars. Our reputation speaks for itself.</p></div></div>
+      <div class="why-point"><div class="why-icon">⚡</div><div><h4>Fast Response</h4><p>We know plumbing problems can't wait. We aim to respond quickly and get the job done right.</p></div></div>
+      <div class="why-point"><div class="why-icon">💷</div><div><h4>Free Consultation</h4><p>Not sure what you need? We offer a free consultation so you know exactly what to expect.</p></div></div>
+      <div class="why-point"><div class="why-icon">🏠</div><div><h4>We Supply Everything</h4><p>Baths, toilets, radiators, showers — we can supply all materials so you don't have to.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="section-tag">What Customers Say</div>
+  <h2 class="section-title">174 Five-Star Reviews</h2>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Came out same day to fix our leaking pipe. Friendly, professional and very reasonably priced. Will definitely use again!"</p><div class="review-name">Mark T. — Google Review</div></div>
+    <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Had a full bathroom installed. The standard of work was outstanding. Tidy, punctual, and great value. 10/10."</p><div class="review-name">Claire M. — Google Review</div></div>
+    <div class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Called at 9pm with a burst pipe and they were here within the hour. Lifesavers! Brilliant company."</p><div class="review-name">Dave R. — Google Review</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Ready to Get Started?</h2>
+    <p class="section-sub">Call us, send a message, or request a free consultation. We're happy to help with any job.</p>
+    <div class="contact-options">
+      <a href="tel:07739567934" class="contact-option"><div class="contact-option-icon">📞</div><h4>Call Us</h4><p>07739 567934</p></a>
+      <a href="mailto:info@ldcplumbing.co.uk" class="contact-option"><div class="contact-option-icon">✉️</div><h4>Email Us</h4><p>info@ldcplumbing.co.uk</p></a>
+      <div class="contact-option"><div class="contact-option-icon">🕐</div><h4>Opening Hours</h4><p>Mon–Sat 9am–6pm<br>24hr Emergency Line</p></div>
+    </div>
+    <a href="tel:07739567934" class="btn-primary" style="font-size:1.1rem; padding: 1rem 2.5rem;">📞 Call Now — 07739 567934</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LDC <span>Plumbing & Heating</span></div>
+  <p>© 2026 LDC Plumbing & Heating. All rights reserved.</p>
+  <p>07739 567934</p>
+</footer>
+
+</body>
+</html>
